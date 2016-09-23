@@ -1,0 +1,18 @@
+<div id="game-holder">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="area play-area"></div>
+    </div>
+    <div class="col-xs-4">
+      <div class="area currency-area" ng-class="{'active': curr}" ng-click="curr = !curr">
+        <h1>
+          <span class="glyphicon glyphicon-piggy-bank"></span>
+          1000</h1>
+      </div>
+      <div class="area map-area" ng-class="{'active': maparea}" ng-click="maparea = !maparea">
+        <div class="full-height" ng-include="'views/mapsvg.html'">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
