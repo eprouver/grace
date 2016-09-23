@@ -1,17 +1,20 @@
 <div id="game-holder">
   <div class="row">
     <div class="col-xs-8">
-      <div class="area play-area"></div>
+      <div class="area play-area">
+        <div class="full-height" ng-if="tab == 'map'">
+          <div class="full-height" ng-include="'views/mapsvg.html'"></div>
+        </div>
+      </div>
     </div>
     <div class="col-xs-4">
-      <div class="area currency-area" ng-class="{'active': curr}" ng-click="curr = !curr">
+      <div class="area currency-area" ng-class="{'active': tab == 'cur'}" ng-click="tab = (tab == 'cur'? 'map' : 'cur')">
         <h1>
           <span class="glyphicon glyphicon-piggy-bank"></span>
           1000</h1>
       </div>
-      <div class="area map-area" ng-class="{'active': maparea}" ng-click="maparea = !maparea">
-        <div class="full-height" ng-include="'views/mapsvg.html'">
-        </div>
+      <div class="area map-area" ng-class="{'active': tab == 'map'}" ng-click="tab = (tab == 'map'? 'cur' : 'map')">
+        <div class="full-height no-click" ng-if="tab != 'map'" ng-include="'views/mapsvg.html'"></div>
       </div>
     </div>
   </div>
