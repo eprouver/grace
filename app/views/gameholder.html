@@ -3,29 +3,38 @@
     <div class="col-xs-8">
       <div class="area play-area text-center">
         <div class="full-height" ng-if="tab == 'map'">
-          <ul class="nav nav-tabs nav-justified">
-            <li ng-class="{'active': countryView == 'map'}"><a ng-click="countryView = 'map'">
-              <span class="glyphicon glyphicon-globe"></span>
-            </a></li>
-            <li ng-class="{'active': countryView == 'list'}"><a ng-click="countryView = 'list'">
-              <span class="glyphicon glyphicon-th-list"></span>
-            </a></li>
+          <!-- <ul class="nav nav-tabs nav-justified">
+            <li ng-class="{'active': countryView == 'map'}">
+              <a ng-click="countryView = 'map'">
+                <span class="glyphicon glyphicon-globe"></span>
+              </a>
+            </li>
+            <li ng-class="{'active': countryView == 'list'}">
+              <a ng-click="countryView = 'list'">
+                <span class="glyphicon glyphicon-th-list"></span>
+              </a>
+            </li>
           </ul>
+
+          <div class="most-height" ng-if="countryView == 'list'">
+            <br/>
+            <div class="row">
+              <div class="col-xs-3" ng-repeat="(id, c) in countryData.mapData">
+                <div class="btn btn-standard btn-block" ng-style="{backgroundColor: $root.levelColors[countryData.mapData[id].level % $root.levelColors.length]}">
+                  {{c.name}}</div>
+              </div>
+            </div>
+          </div> -->
 
           <div class="most-height" ng-if="countryView == 'map'">
             <div class="full-height animated zoomIn" ng-include="'views/mapsvg.html'"></div>
           </div>
-          <div class="most-height" ng-if="countryView == 'list'">
-            <br/>
-            <div class="row">
-            <div class="col-xs-3" ng-repeat="(id, c) in countryData.mapData">
-              <div class="btn btn-standard btn-block" ng-style="{backgroundColor: $root.levelColors[countryData.mapData[id].level % $root.levelColors.length]}"> {{c.name}}</div>
-            </div>
-          </div>
-          </div>
 
           <div ng-show="selectedCountry">
-            <h2> Learn about {{selectedCountry.name}} </h2>
+            <h2>
+              Learn about
+              {{selectedCountry.name}}
+            </h2>
           </div>
           <div id="instructions" ng-if="!selectedCountry">
             <h1>Pick a Country Above!</h1>
@@ -48,9 +57,7 @@
           <div class="most-height no-click" ng-include="'views/mapsvg.html'"></div>
         </div>
         <div class="proposed-country full-height" ng-show="tab == 'map' && selectedCountry">
-          <svg id="goto-country" class="most-height full-width">
-
-          </svg>
+          <svg class="most-height full-width" id="goto-country"></svg>
           <div class="btn btn-success btn-block">Let's Go!</div>
         </div>
       </div>
