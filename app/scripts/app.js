@@ -11,8 +11,13 @@
 angular
   .module('graceApp', [
     'ngAnimate',
-    'ngRoute'
+    'ngRoute',
+    'ngSanitize'
   ])
+  .constant('config', {
+    pointInterval: 30000,
+    countryReward: 1
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -28,4 +33,7 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .run(function($rootScope){
+    $rootScope.levelColors = ['#ccc','#aaa','#999','#777','#555','#333','#111'];
+  })

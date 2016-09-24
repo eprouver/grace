@@ -1,0 +1,30 @@
+<div>
+  <div class="row heading-row">
+    <div class="col-xs-4">
+      <span class="glyphicon glyphicon-piggy-bank"></span>
+    </div>
+    <div  class="col-xs-8">
+      <span>{{currentPoints}}</span>
+    </div>
+  </div>
+
+    <div class="progress">
+      <div class="progress-bar progress-bar-primary" ng-style="{width: ((timeLeft / maxTime)* 100) + '%' }">
+
+      </div>
+    </div>
+
+    <div ng-if="!selectedCountry" class="well text-muted">
+      <p>Next Round You'll Earn {{nextRound()}} <span class="glyphicon glyphicon-piggy-bank"></span></p>
+      <p>Level Up Countries to Get More</p>
+    </div>
+
+    <br/>
+    <div ng-if="selectedCountry">
+      <div class="alert" ng-class="{'alert-success': currentPoints >= countryData.mapData[selectedCountry.id].nextLevel, 'alert-danger': currentPoints < countryData.mapData[selectedCountry.id].nextLevel}" ng-click="levelUp(selectedCountry, $event)">
+        Level up {{countryData.mapData[selectedCountry.id].name}} for {{countryData.mapData[selectedCountry.id].nextLevel}} <span class="glyphicon glyphicon-piggy-bank"></span>
+      </div>
+
+    </div>
+
+</div>

@@ -1,54 +1,85 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-
 $bs-1: #ccc;
 $bs-2: #666;
-
-#game-holder{
+$selection: orange;
+$selection2: lime;
+#game-holder {
   height: 100vh;
-  & > .row{
+  & > .row {
     height: 100%;
-
-    & > [class*="col-"]{
+    & > [class*="col-"] {
       height: 100%;
     }
   }
-
-  .full-height{
+  .full-height {
     height: 100%;
   }
-
-  .no-click{
+  .full-width{
+    width: 100%;
+  }
+  .no-click {
     pointer-events: none;
   }
-}
-
-#map-svg{
-  max-height: 100%;
-  .country{
-    fill: #ccc;
-    stroke: white;
-    stroke-width: 2;
+  .most-height{
+    height: 80%;
   }
 }
-
-.area{
+.floater {
+  font-size: 2em;
+  animation: fadeOutUp 1s ease both;
+  position: fixed;
+  pointer-events: none;
+  &:before {
+    content: '+ ';
+  }
+}
+#map-svg {
+  max-height: 100%;
+  .country {
+    fill: #ccc;
+    stroke: white;
+    stroke-width: 2px;
+    &.selected {
+      stroke: $selection;
+      stroke-width: 10px;
+    }
+    &.highlight {
+      animation: 1s ease fill both;
+    }
+  }
+}
+@keyframes fill {
+  0% {
+    stroke: $selection2;
+  }
+  50% {
+    stroke: $selection;
+  }
+  100% {
+    stroke: $selection2;
+  }
+}
+.area {
   box-shadow: 0 0 0 5px $bs-1;
   border-radius: 1em;
-  position:relative;
+  position: relative;
   background: white;
   transition: all 0.1s ease;
   left: 0;
-
-  &.active{
+  .play-heading{
+    font-size: 2em;
+    padding-top: 15px;
+  }
+  &.active {
     box-shadow: 30px 0 0 5px $bs-2,5px 0 0 5px $bs-2;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     left: -30px;
   }
-
-  &.play-area{
+  &.play-area {
     height: 80%;
     margin: 4% 0;
     border-top-right-radius: 0;
@@ -56,17 +87,31 @@ $bs-2: #666;
     box-shadow: 0 0 0 5px $bs-2;
     margin-top: 25px;
   }
-
-  &.currency-area {
+  &:not(.play-area):first-of-type {
     height: 38%;
     margin-top: 25px;
     text-align: center;
     padding: 0.5em;
-  }
 
-  &.map-area{
+  }
+  &:not(.play-area):last-of-type {
     height: 37.59999%;
     padding: 0.5em;
     top: 4.4%;
+  }
+
+  .heading-row {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 2em;
+  }
+  .progress-bar {
+    transition: none;
+  }
+
+  .proposed-country {
+    fill: $selection;
+    stroke: $bs-2;
+    stroke-width: 3px;
   }
 }
